@@ -1,5 +1,7 @@
 package com.redcare.rest;
 
+import com.redcare.exception.InvalidCreatedAfterException;
+import com.redcare.rest.respose.BedRequestResponse;
 import com.redcare.rest.respose.ItemResponse;
 import com.redcare.rest.respose.Response;
 import com.redcare.service.RepositorySearchService;
@@ -78,5 +80,16 @@ public class RestControllerTest {
                 .andExpect(content().json(objectMapper.writeValueAsString(response)));
 
         verify(service).searchRepository(Mockito.isNull(), Mockito.eq("2021-02-12"));
+    }
+
+    @Test
+    void shouldRespondWithBadRequest()  throws Exception {
+        when(service.searchRepository(Mockito.isNull(), Mockito.anyString()))
+                .thenThrow(new InvalidCreatedAfterException("createdAfter must match format yyyy-MM-dd"));
+
+        mockMvc.perform(get("/search/repositories?createdAfter=201-0-12")).andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(content().json(objectMapper.writeValueAsString(new BedRequestResponse("createdAfter must match format yyyy-MM-dd"))));
     }
 }
