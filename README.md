@@ -86,7 +86,7 @@ recencyScore = daysSinceLastUpdate < 30 ? 50 : 10
 ```css
 src/main/java/com.redcare
 ├── controller        → REST endpoint (/repos)
-├── service           → business logic, scoring, sorting
+├── service           → business logic, scoring
 ├── client            → GitHub API client
 ├── response          → DTO classes for GitHub response mapping
 ```
