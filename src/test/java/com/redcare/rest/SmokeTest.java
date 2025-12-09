@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class SmokeTest {
 
     @Autowired
-    private RestController controller;
+    private RepositorySearchRestController controller;
 
     @Test
     void contextLoads() {

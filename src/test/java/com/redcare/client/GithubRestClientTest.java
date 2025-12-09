@@ -1,10 +1,11 @@
 package com.redcare.client;
 
-import com.redcare.client.response.GithubItemResponse;
 import com.redcare.client.response.GithubResponse;
+import com.redcare.config.RestClientConfig;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.restclient.test.autoconfigure.RestClientTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -16,6 +17,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 @RestClientTest(GithubRestClient.class)
+@ImportAutoConfiguration(classes = RestClientConfig.class)
 public class GithubRestClientTest {
 
     @Autowired
@@ -41,14 +43,14 @@ public class GithubRestClientTest {
         assertThat(response.totalCount()).isEqualTo(11572275);
         assertThat(response.items()).hasSize(1);
 
-        GithubItemResponse itemResponse = response.items().getFirst();
-        assertThat(itemResponse).isNotNull();
-        assertThat(itemResponse.name()).isEqualTo("hello-algo");
-        assertThat(itemResponse.url()).isEqualTo("https://api.github.com/repos/krahets/hello-algo");
-        assertThat(itemResponse.language()).isEqualTo("Java");
-        assertThat(itemResponse.stargazersCount()).isEqualTo(119846);
-        assertThat(itemResponse.forks()).isEqualTo(14625);
-        assertThat(itemResponse.updatedAt()).isEqualTo(OffsetDateTime.parse("2025-12-08T17:46:19Z"));
+        GithubResponse.Item item = response.items().getFirst();
+        assertThat(item).isNotNull();
+        assertThat(item.name()).isEqualTo("hello-algo");
+        assertThat(item.url()).isEqualTo("https://api.github.com/repos/krahets/hello-algo");
+        assertThat(item.language()).isEqualTo("Java");
+        assertThat(item.stargazersCount()).isEqualTo(119846);
+        assertThat(item.forks()).isEqualTo(14625);
+        assertThat(item.updatedAt()).isEqualTo(OffsetDateTime.parse("2025-12-08T17:46:19Z"));
     }
 
     @Test
@@ -63,14 +65,14 @@ public class GithubRestClientTest {
         assertThat(response.totalCount()).isEqualTo(11572275);
         assertThat(response.items()).hasSize(1);
 
-        GithubItemResponse itemResponse = response.items().getFirst();
-        assertThat(itemResponse).isNotNull();
-        assertThat(itemResponse.name()).isEqualTo("hello-algo");
-        assertThat(itemResponse.url()).isEqualTo("https://api.github.com/repos/krahets/hello-algo");
-        assertThat(itemResponse.language()).isEqualTo("Java");
-        assertThat(itemResponse.stargazersCount()).isEqualTo(119846);
-        assertThat(itemResponse.forks()).isEqualTo(14625);
-        assertThat(itemResponse.updatedAt()).isEqualTo(OffsetDateTime.parse("2025-12-08T17:46:19Z"));
+        GithubResponse.Item item = response.items().getFirst();
+        assertThat(item).isNotNull();
+        assertThat(item.name()).isEqualTo("hello-algo");
+        assertThat(item.url()).isEqualTo("https://api.github.com/repos/krahets/hello-algo");
+        assertThat(item.language()).isEqualTo("Java");
+        assertThat(item.stargazersCount()).isEqualTo(119846);
+        assertThat(item.forks()).isEqualTo(14625);
+        assertThat(item.updatedAt()).isEqualTo(OffsetDateTime.parse("2025-12-08T17:46:19Z"));
     }
 
     @Test
@@ -85,14 +87,14 @@ public class GithubRestClientTest {
         assertThat(response.totalCount()).isEqualTo(11572275);
         assertThat(response.items()).hasSize(1);
 
-        GithubItemResponse itemResponse = response.items().getFirst();
-        assertThat(itemResponse).isNotNull();
-        assertThat(itemResponse.name()).isEqualTo("hello-algo");
-        assertThat(itemResponse.url()).isEqualTo("https://api.github.com/repos/krahets/hello-algo");
-        assertThat(itemResponse.language()).isEqualTo("Java");
-        assertThat(itemResponse.stargazersCount()).isEqualTo(119846);
-        assertThat(itemResponse.forks()).isEqualTo(14625);
-        assertThat(itemResponse.updatedAt()).isEqualTo(OffsetDateTime.parse("2025-12-08T17:46:19Z"));
+        GithubResponse.Item item = response.items().getFirst();
+        assertThat(item).isNotNull();
+        assertThat(item.name()).isEqualTo("hello-algo");
+        assertThat(item.url()).isEqualTo("https://api.github.com/repos/krahets/hello-algo");
+        assertThat(item.language()).isEqualTo("Java");
+        assertThat(item.stargazersCount()).isEqualTo(119846);
+        assertThat(item.forks()).isEqualTo(14625);
+        assertThat(item.updatedAt()).isEqualTo(OffsetDateTime.parse("2025-12-08T17:46:19Z"));
     }
 
     @Test
@@ -107,14 +109,14 @@ public class GithubRestClientTest {
         assertThat(response.totalCount()).isEqualTo(11572275);
         assertThat(response.items()).hasSize(1);
 
-        GithubItemResponse itemResponse = response.items().getFirst();
-        assertThat(itemResponse).isNotNull();
-        assertThat(itemResponse.name()).isEqualTo("hello-algo");
-        assertThat(itemResponse.url()).isEqualTo("https://api.github.com/repos/krahets/hello-algo");
-        assertThat(itemResponse.language()).isEqualTo("Java");
-        assertThat(itemResponse.stargazersCount()).isEqualTo(119846);
-        assertThat(itemResponse.forks()).isEqualTo(14625);
-        assertThat(itemResponse.updatedAt()).isEqualTo(OffsetDateTime.parse("2025-12-08T17:46:19Z"));
+        GithubResponse.Item item = response.items().getFirst();
+        assertThat(item).isNotNull();
+        assertThat(item.name()).isEqualTo("hello-algo");
+        assertThat(item.url()).isEqualTo("https://api.github.com/repos/krahets/hello-algo");
+        assertThat(item.language()).isEqualTo("Java");
+        assertThat(item.stargazersCount()).isEqualTo(119846);
+        assertThat(item.forks()).isEqualTo(14625);
+        assertThat(item.updatedAt()).isEqualTo(OffsetDateTime.parse("2025-12-08T17:46:19Z"));
     }
 
     public static final String RESPONSE = """
