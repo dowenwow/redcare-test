@@ -2,9 +2,8 @@ package com.redcare.rest;
 
 import com.redcare.exception.InvalidCreatedAfterException;
 import com.redcare.rest.respose.BedRequestResponse;
-import com.redcare.rest.respose.ItemResponse;
 import com.redcare.rest.respose.Response;
-import com.redcare.service.RepositorySearchService;
+import com.redcare.service.SearchRepositoryService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class RestControllerTest {
+public class RepositorySearchRestControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,12 +32,12 @@ public class RestControllerTest {
     private ObjectMapper objectMapper;
 
     @MockitoBean
-    private RepositorySearchService service;
+    private SearchRepositoryService service;
 
     @Test
     void shouldInvokeSearchServiceWithNullParameters() throws Exception {
-        ItemResponse itemResponse = new ItemResponse("RepositoryName", "url", "Java", 4, 12, 14.5);
-        Response response = new Response(7, List.of(itemResponse));
+        Response.Item item = new Response.Item("RepositoryName", "url", "Java", 4, 12, 14.5);
+        Response response = new Response(7, List.of(item));
 
         when(service.searchRepository(Mockito.isNull(), Mockito.isNull())).thenReturn(response);
 
@@ -52,8 +51,8 @@ public class RestControllerTest {
 
     @Test
     void shouldInvokeSearchServiceWithNullCreatedAfter() throws Exception {
-        ItemResponse itemResponse = new ItemResponse("RepositoryName", "url", "Java", 4, 12, 14.5);
-        Response response = new Response(7, List.of(itemResponse));
+        Response.Item item = new Response.Item("RepositoryName", "url", "Java", 4, 12, 14.5);
+        Response response = new Response(7, List.of(item));
 
         when(service.searchRepository(Mockito.anyString(), Mockito.isNull())).thenReturn(response);
 
@@ -67,9 +66,9 @@ public class RestControllerTest {
 
     @Test
     void shouldInvokeSearchServiceWithNullLanguage() throws Exception {
-        ItemResponse itemResponse = new ItemResponse("RepositoryName", "url", "Java", 4, 12, 14.5
+        Response.Item item = new Response.Item("RepositoryName", "url", "Java", 4, 12, 14.5
         );
-        Response response = new Response(7, List.of(itemResponse));
+        Response response = new Response(7, List.of(item));
 
         when(service.searchRepository(Mockito.isNull(), Mockito.anyString()))
                 .thenReturn(response);

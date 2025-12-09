@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: Redcare-test
+
+server:
+  port: ${SERVER_PORT:8080}
+
+logging:
+  level:
+    com.redcare.client.GithubRestClient: debug
+
+github:
+  client:
+    base-url: ${GITHUB_CLIENT_BASE_URL:https://api.github.com/search}

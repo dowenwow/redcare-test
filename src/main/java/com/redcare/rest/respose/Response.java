@@ -7,7 +7,14 @@ import java.util.List;
 public record Response(
         @JsonProperty("total_count")
         int totalCount,
-        List<ItemResponse> items
+        List<Item> items
 ) {
+    public record Item(String name,
+                       String url,
+                       String language,
+                       int start,
+                       int forks,
+                       double score) {
 
+    }
 }
